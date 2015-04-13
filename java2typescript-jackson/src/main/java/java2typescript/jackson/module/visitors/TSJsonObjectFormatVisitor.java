@@ -114,7 +114,7 @@ public class TSJsonObjectFormatVisitor extends ABaseTSJsonFormatVisitor<ClassTyp
 	private void addMethod(Method method) {
 		FunctionType function = new FunctionType();
 
-		AnnotatedMethod annotMethod = new AnnotatedMethod(method, new AnnotationMap(), null);
+        AnnotatedMethod annotMethod = new AnnotatedMethod(null, method, new AnnotationMap(), null);
 
 		function.setResultType(getTSTypeForClass(annotMethod));
 		for (int i = 0; i < annotMethod.getParameterCount(); i++) {
@@ -136,7 +136,6 @@ public class TSJsonObjectFormatVisitor extends ABaseTSJsonFormatVisitor<ClassTyp
 		addField(name, getTSTypeForHandler(this, handler, propertyTypeHint));
 	}
 
-	@Override
 	public void property(String name) throws JsonMappingException {
 		addField(name, AnyType.getInstance());
 	}
@@ -152,7 +151,6 @@ public class TSJsonObjectFormatVisitor extends ABaseTSJsonFormatVisitor<ClassTyp
 		addField(name, getTSTypeForHandler(this, handler, propertyTypeHint));
 	}
 
-	@Override
 	public void optionalProperty(String name) throws JsonMappingException {
 		addField(name, AnyType.getInstance());
 	}
